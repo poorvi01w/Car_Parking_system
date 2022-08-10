@@ -15,7 +15,7 @@ reg red_tmp,green_tmp;
 reg [3:0] totalcars; 
 always @(posedge clk or posedge reset_n)
 begin
-if(reset_n) begin
+  if(reset_n) begin //reset_n=1
 current_state = IDLE;
 // countcar = 4'b0000;
 end
@@ -34,7 +34,7 @@ end
 
 always @(*)
 begin
-case(current_state)
+  case(current_state) //if current state =
 IDLE: begin
 if(sensor_entrance == 1)
 next_state = WAIT_PASSWORD;
@@ -129,11 +129,5 @@ endcase
 end
 assign RED_LED = red_tmp  ;
 assign GREEN_LED = green_tmp;
-//begin
-//assign countcar[3] = totalcars[3];
-//assign countcar[2] = totalcars[2];
-//assign countcar[1] = totalcars[1];
-//assign countcar[0] = totalcars[0];
-//end
-//Seven_segment_LED_Display_Controller g1(countcar);
+
 endmodule
